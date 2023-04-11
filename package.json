@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"cd backend && nodemon server.js\" \"cd frontend && npm start\""
+    "start": "concurrently \"cd backend && nodemon app.js\" \"cd frontend && npm start\""
   },
   "keywords": [],
   "author": "",

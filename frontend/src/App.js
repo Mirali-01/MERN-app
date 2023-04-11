@@ -1,13 +1,13 @@
 import "./App.css";
-import axios from "axios";
+import Index from "./components/Index";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      {/* <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes> */}
+      <Routes>
+        <Route path="/" element={<Index />} />
+      </Routes>
     </div>
   );
 }
