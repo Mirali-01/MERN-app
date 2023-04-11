@@ -1,3 +1,5 @@
+const User = require("./models/user");
+
 module.exports = {
   get: (req, res) => {
     res.send("User: Mir");

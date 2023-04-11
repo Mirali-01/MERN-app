@@ -1,3 +1,5 @@
+const Exercise = require("./models/exercise");
+
 module.exports = {
   get: (req, res) => {
     res.send("Exercise: Squats");

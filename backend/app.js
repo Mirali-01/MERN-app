@@ -17,11 +17,6 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const methodOverride = require("method-override");
 
-// models
-const User = require("./models/user");
-const Exercise = require("./models/exercise");
-const Workout = require("./models/workout");
-
 // middleware
 // app.use(express.urlencoded({ extended: false }));
 // app.use(methodOverride("_method"));
