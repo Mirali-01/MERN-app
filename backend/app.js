@@ -6,8 +6,11 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 4000;
 const path = require("path");
-// const routes = require("./routes");
+
+// all routes
 const userRouter = require("./routes/User");
+const exerciseRouter = require("./routes/Exercise");
+const workoutRouter = require("./routes/Workout");
 
 // dependencies
 const mongoose = require("mongoose");
@@ -35,10 +38,10 @@ const Workout = require("./models/workout");
 //   console.log("Connected to MongoDB");
 // });
 
-// middleware
+// middleware for routes
 app.use("/user", userRouter);
-
-// app.set("/", routes);
+app.use("/exercise", exerciseRouter);
+app.use("/workout", workoutRouter);
 
 // Listen
 app.listen(PORT, () => {
