@@ -29,9 +29,9 @@ mongoose.connection.once("open", () => {
   console.log("Connected to MongoDB");
 });
 
-app.set("App.js", "src/App.js");
+app.set("/", "");
 
-const indexRouter = require("./routes/index");
+const indexRouter = require("./routes");
 
 // middleware
 app.use("/", indexRouter);
