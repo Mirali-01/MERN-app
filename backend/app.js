@@ -8,8 +8,10 @@ const methodOverride = require("method-override");
 const express = require("express");
 const app = express();
 
-// User model
+// models
 const User = require("./models/user");
+const Exercise = require("./models/exercise");
+const Workout = require("./models/workout");
 
 // middleware
 // app.use(express.urlencoded({ extended: false }));
