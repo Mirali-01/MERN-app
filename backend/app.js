@@ -12,6 +12,11 @@ const userRouter = require("./routes/User");
 const exerciseRouter = require("./routes/Exercise");
 const workoutRouter = require("./routes/Workout");
 
+// middleware for routes
+app.use("/user", userRouter);
+app.use("/exercise", exerciseRouter);
+app.use("/workout", workoutRouter);
+
 // dependencies
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -32,11 +37,6 @@ const methodOverride = require("method-override");
 // mongoose.connection.once("open", () => {
 //   console.log("Connected to MongoDB");
 // });
-
-// middleware for routes
-app.use("/user", userRouter);
-app.use("/exercise", exerciseRouter);
-app.use("/workout", workoutRouter);
 
 // Listen
 app.listen(PORT, () => {

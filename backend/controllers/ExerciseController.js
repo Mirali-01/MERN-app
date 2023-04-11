@@ -1,4 +1,4 @@
-const Exercise = require("./models/exercise");
+// const Exercise = require("./models/exercise");
 
 module.exports = {
   get: (req, res) => {
