@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 const path = require("path");
 // const routes = require("./routes");
-const userRouter = require("./routes/user");
+const userRouter = require("./routes/User");
 
 // dependencies
 const mongoose = require("mongoose");
