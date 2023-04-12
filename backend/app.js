@@ -4,12 +4,16 @@ require("dotenv").config();
 // app
 const express = require("express");
 const app = express();
-const { errorHandler } = require("./middleware/errorMiddleware");
+const {
+  defErrorHandler,
+  mongoErrorHandler,
+} = require("./middleware/errorMiddleware");
 const port = process.env.PORT || 5000;
 // const path = require("path");
 
-// dependencies
-const mongoose = require("mongoose");
+const mongoDB = require("./mongo/mongoDB");
+mongoDB();
+app.use(mongoErrorHandler);
 const cors = require("cors");
 const methodOverride = require("method-override");
 
@@ -25,15 +29,6 @@ app.use((req, res, next) => {
 // connection between backend & frontend
 app.use(cors());
 
-// Mongoose setup
-mongoose.set("strictQuery", true);
-mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Connected to MongoDB"));
-
 // all routes
 const userRouter = require("./routes/UserRoutes");
 // const exerciseRouter = require("./routes/ExerciseRoutes");
@@ -44,8 +39,7 @@ app.use("/user", userRouter);
 // app.use("/exercise", exerciseRouter);
 // app.use("/workout", workoutRouter);
 
-// errorHandler
-app.use(errorHandler);
+app.use(defErrorHandler);
 
 // Listen
 app.listen(port, () => {
