@@ -4,6 +4,7 @@ require("dotenv").config();
 // app
 const express = require("express");
 const app = express();
+const { errorHandler } = require("./middleware/errorMiddleware");
 const port = process.env.PORT || 5000;
 // const path = require("path");
 
@@ -42,6 +43,9 @@ const userRouter = require("./routes/UserRoutes");
 app.use("/user", userRouter);
 // app.use("/exercise", exerciseRouter);
 // app.use("/workout", workoutRouter);
+
+// errorHandler
+app.use(errorHandler);
 
 // Listen
 app.listen(port, () => {
