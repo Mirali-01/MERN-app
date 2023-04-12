@@ -1,33 +1,40 @@
 // const User = require("../models/user");
 
-// exports.getUsers = async (req, res) => {
-//   try {
-//     const users = User.find({ user: req.params.user });
-//     res.status(200).json({ users });
-//   } catch (error) {
-//     res.status(400).json({ message: "Can't find User" });
-//   }
-// };
-
+// @desc Get user
+// @route GET /user
+// @access Private
 const getUsers = (req, res) => {
   res.status(200).json({ message: "Get Users" });
 };
 
-const createUsers = (req, res) => {
-  res.status(200).json({ message: "Create Users" });
+// @desc Create user
+// @route POST /user
+// @access Private
+const createUser = (req, res) => {
+  if (!req.body.user) {
+    res.status(400);
+    throw new Error("Please enter your username");
+  }
+  res.status(200).json({ message: "Create User" });
 };
 
-const updateUsers = (req, res) => {
-  res.status(200).json({ message: "Update Users" });
+// @desc Update user
+// @route PUT /user/:id
+// @access Private
+const updateUser = (req, res) => {
+  res.status(200).json({ message: `Update User ${req.params.id}` });
 };
 
-const deleteUsers = (req, res) => {
-  res.status(200).json({ message: "Delete Users" });
+// @desc Delete user
+// @route DELETE /user/:id
+// @access Private
+const deleteUser = (req, res) => {
+  res.status(200).json({ message: `Delete User ${req.params.id}` });
 };
 
 module.exports = {
   getUsers,
-  createUsers,
-  updateUsers,
-  deleteUsers,
+  createUser,
+  updateUser,
+  deleteUser,
 };
