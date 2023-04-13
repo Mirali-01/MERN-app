@@ -32,12 +32,12 @@ app.use(cors());
 // all routes
 const userRouter = require("./routes/UserRoutes");
 // const exerciseRouter = require("./routes/ExerciseRoutes");
-// const workoutRouter = require("./routes/WorkoutRoutes");
+const workoutRouter = require("./routes/WorkoutRoutes");
 
 // middleware for routes
 app.use("/user", userRouter);
 // app.use("/exercise", exerciseRouter);
-// app.use("/workout", workoutRouter);
+app.use("/workout", workoutRouter);
 
 app.use(defErrorHandler);
 

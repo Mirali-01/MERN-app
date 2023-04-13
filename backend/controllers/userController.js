@@ -2,81 +2,24 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/user");
 
-// @route GET /user
-// @access Private
-const getUsers = asyncHandler(async (req, res) => {
-  const users = await User.find();
-
-  // res.status(200).json({ message: "Get Users" });
-  res.status(200).json(users);
-});
-
-// Posts but I still get an error
 // @route POST /user
-// @access Private
-const createUser = asyncHandler(async (req, res) => {
-  if (!req.body.username) {
-    res.status(400);
-    throw new Error("Please enter your username");
-  }
-
-  const user = await User.create({
-    username: req.body.username,
-  });
-
-  // res.status(200).json({ message: `Created User: ${req.body.user}` });
-  res.status(200).json(user);
-});
-
-// Same problem, but it still works
-// @route PUT /user/:id
-// @access Private
-const updateUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id);
-
-  if (!user) {
-    res.status(400);
-    throw new Error("User not found");
-  }
-
-  const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
-
-  // res
-  //   .status(200)
-  //   .json({ message: `Updated User: ${req.params.id} | ${req.body.user}` });
-
-  res.status(200).json(updatedUser);
-});
-
-// same problem, but still works
-// @route DELETE /user/:id
-// @access Private
-const deleteUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id);
-
-  if (!user) {
-    res.status(400);
-    throw new Error("User not found");
-  }
-
-  // to easily remove all users
-  // await User.remove();
-
-  // Default
-  const deletedUser = await User.findByIdAndRemove(req.params.id);
-
-  // res
-  //   .status(200)
-  //   .json({ message: `Deleted User: ${req.params.id} | ${req.body.user}` });
-
-  res.status(200).json(deletedUser);
-});
-
-module.exports = {
-  getUsers,
-  createUser,
-  updateUser,
-  deleteUser,
+// @access Public
+const registerUser = (req, res) => {
+  res.json({ message: "Register User" });
 };
+
+// Authenticates the user
+// @route POST /user/login
+// @access Public
+const loginUser = (req, res) => {
+  res.json({ message: "Login User" });
+};
+
+// Gets user data
+// @route GET /user/me
+// @access Public
+const getMe = (req, res) => {
+  res.json({ message: "User data display" });
+};
+
+module.exports = { registerUser, loginUser, getMe };
