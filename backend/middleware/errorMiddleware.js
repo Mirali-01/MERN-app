@@ -1,5 +1,6 @@
 // Default Error Handler
 // *Status code 500 = Internal Server Error, couldn't fulfill request
+// 400 = bad, 200 = ok
 const defErrorHandler = (err, req, res, next) => {
   const statusCode = res.statusCode ? res.statusCode : 500;
 
