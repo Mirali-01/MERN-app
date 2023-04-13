@@ -15,13 +15,13 @@ const getUsers = asyncHandler(async (req, res) => {
 // @route POST /user
 // @access Private
 const createUser = asyncHandler(async (req, res) => {
-  if (!req.body.user) {
+  if (!req.body.username) {
     res.status(400);
     throw new Error("Please enter your username");
   }
 
   const user = await User.create({
-    user: req.body.user,
+    username: req.body.username,
   });
 
   // res.status(200).json({ message: `Created User: ${req.body.user}` });
@@ -61,6 +61,10 @@ const deleteUser = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 
+  // to easily remove all users
+  // await User.remove();
+
+  // Default
   const deletedUser = await User.findByIdAndRemove(req.params.id);
 
   // res
