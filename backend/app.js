@@ -10,24 +10,23 @@ const {
 } = require("./middleware/errorMiddleware");
 const port = process.env.PORT || 5000;
 // const path = require("path");
+const cors = require("cors");
+const methodOverride = require("method-override");
 
 const mongoDB = require("./mongo/mongoDB");
 mongoDB();
 app.use(mongoErrorHandler);
-const cors = require("cors");
-const methodOverride = require("method-override");
 
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+// connection between backend & frontend
+app.use(cors());
 app.use(methodOverride("_method"));
 app.use((req, res, next) => {
   console.log(req.originalUrl);
   next();
 });
-
-// connection between backend & frontend
-app.use(cors());
 
 // all routes
 const userRouter = require("./routes/UserRoutes");

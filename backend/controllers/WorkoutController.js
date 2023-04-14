@@ -1,13 +1,13 @@
 // you can avoid using try-catch blocks, allows us to handle errors easily with a declared error handler
 const asyncHandler = require("express-async-handler");
 const Workout = require("../models/workout");
+const User = require("../models/user");
 
 // @route GET /workout
 // @access Private
 const getWorkouts = asyncHandler(async (req, res) => {
-  const workouts = await Workout.find();
+  const workouts = await Workout.find({ user: req.user.id });
 
-  // res.status(200).json({ message: "Get Workouts" });
   res.status(200).json(workouts);
 });
 
@@ -21,9 +21,9 @@ const createWorkout = asyncHandler(async (req, res) => {
 
   const workout = await Workout.create({
     workout: req.body.workout,
+    user: req.user.id,
   });
 
-  // res.status(200).json({ message: `Created Workout: ${req.body.workout}` });
   res.status(200).json(workout);
 });
 
@@ -32,9 +32,24 @@ const createWorkout = asyncHandler(async (req, res) => {
 const updateWorkout = asyncHandler(async (req, res) => {
   const workout = await Workout.findById(req.params.id);
 
+  // Checks if workout exists
   if (!workout) {
     res.status(400);
     throw new Error("Workout not found");
+  }
+
+  const user = await User.findById(req.user.id);
+
+  // Checks user
+  if (!user) {
+    res.status(401);
+    throw new Error("User Not Found");
+  }
+
+  // Checks if logged in user matches workout user
+  if (workout.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error("User Not Authorized");
   }
 
   const updatedWorkout = await Workout.findByIdAndUpdate(
@@ -44,10 +59,6 @@ const updateWorkout = asyncHandler(async (req, res) => {
       new: true,
     }
   );
-
-  // res
-  //   .status(200)
-  //   .json({ message: `Updated Workout: ${req.params.id} | ${req.body.workout}` });
 
   res.status(200).json(updatedWorkout);
 });
@@ -62,15 +73,21 @@ const deleteWorkout = asyncHandler(async (req, res) => {
     throw new Error("Workout not found");
   }
 
-  // to easily remove all workouts
-  // await Workout.remove();
+  const user = await User.findById(req.user.id);
 
-  // Default
+  // Checks user
+  if (!user) {
+    res.status(401);
+    throw new Error("User Not Found");
+  }
+
+  // Checks if logged in user matches workout user
+  if (workout.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error("User Not Authorized");
+  }
+
   const deletedWorkout = await Workout.findByIdAndRemove(req.params.id);
-
-  // res
-  //   .status(200)
-  //   .json({ message: `Deleted Workout: ${req.params.id} | ${req.body.workout}` });
 
   res.status(200).json(deletedWorkout);
 });

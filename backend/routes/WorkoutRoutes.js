@@ -6,9 +6,10 @@ const {
   updateWorkout,
   deleteWorkout,
 } = require("../controllers/WorkoutController");
+const { protect } = require("../middleware/authMiddleware");
 
-router.route("/").get(getWorkouts).post(createWorkout);
+router.route("/").get(protect, getWorkouts).post(protect, createWorkout);
 
-router.route("/:id").put(updateWorkout).delete(deleteWorkout);
+router.route("/:id").put(protect, updateWorkout).delete(protect, deleteWorkout);
 
 module.exports = router;
