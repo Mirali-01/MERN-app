@@ -22,8 +22,11 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error("User already exists");
   }
 
-  // Hash password = encrypt
+  // Salt = creates unique passwords by generating a random value
+  // Salt round = cost factor => more rounds = harder time to decode
   const salt = await bcrypt.genSalt(10);
+  // Hash password = encrypting password with salt
+  // 32 characters for 128-bit encryption & 64 characters for 256-bit encryption
   const hashPassword = await bcrypt.hash(password, salt);
 
   // Create user
@@ -84,8 +87,9 @@ const getMe = asyncHandler(async (req, res) => {
 });
 
 // Generate JWT
+// The Pepper = JWT_SECRET_KEY
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
+  return jwt.sign({ id }, process.env.JWT_SECRET_KEY, {
     expiresIn: "30d",
   });
 };
