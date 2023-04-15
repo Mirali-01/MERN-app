@@ -10,3 +10,5 @@ function App() {
 }
 
 export default App;
+
+// remember to check if react dependencies need to be in the frontend or in the root
