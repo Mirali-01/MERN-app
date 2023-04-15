@@ -1,14 +1,20 @@
-import Nav from "./pages/Nav";
+import Nav from "./components/Nav";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <h1>My App</h1>
+      <Nav />
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </div>
   );
 }
 
 export default App;
-
-// remember to check if react dependencies need to be in the frontend or in the root
