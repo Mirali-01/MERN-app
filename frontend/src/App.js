@@ -1,13 +1,10 @@
-import "./App.css";
-import Index from "./components/Index";
+import Nav from "./pages/Nav";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      {/* <Routes>
-        <Route path="/" element={<Index />} />
-      </Routes> */}
+      <h1>My App</h1>
     </div>
   );
 }
