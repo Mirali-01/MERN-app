@@ -3,7 +3,9 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { store } from "./app/store";
+// Provides the update functionality to App
 import { Provider } from "react-redux";
+// Router runs all the web routes
 import { BrowserRouter as Router } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
