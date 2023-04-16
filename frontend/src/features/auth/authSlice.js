@@ -17,12 +17,13 @@ const initialState = {
   message: "",
 };
 
-// Register user
-// takes a string action
+// Register user, can vary in time, saves to localStorage
+// takes a string value that has the action
 export const register = createAsyncThunk(
   "auth/register",
   async (user, thunkAPI) => {
     try {
+      // returning payload from register function
       return await authService.register(user);
     } catch (error) {
       const message =
@@ -34,7 +35,26 @@ export const register = createAsyncThunk(
   }
 );
 
-// synchronous
+// Login user
+export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
+  try {
+    // returning payload from register function
+    return await authService.login(user);
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.data.message) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+});
+
+// logout user
+export const logout = createAsyncThunk("auth/logout", async () => {
+  await authService.logout();
+});
+
+// synchronous for state updates
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -46,7 +66,42 @@ export const authSlice = createSlice({
       state.message = "";
     },
   },
-  extraReducers: () => {},
+  extraReducers: (builder) => {
+    builder
+      // Checking through 3 promise cases
+      .addCase(register.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = action.payload;
+        // action.payload takes the response from the backend
+      })
+      .addCase(register.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        state.user = null;
+      })
+      .addCase(login.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = action.payload;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        state.user = null;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = null;
+      });
+  },
 });
 
 export const { reset } = authSlice.actions;

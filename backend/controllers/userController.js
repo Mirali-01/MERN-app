@@ -36,6 +36,7 @@ const registerUser = asyncHandler(async (req, res) => {
     password: hashPassword,
   });
 
+  // displays info in Redux DevTools
   if (user) {
     res.status(201).json({
       _id: user.id,
