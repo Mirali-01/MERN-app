@@ -27,10 +27,15 @@ const Register = () => {
 
   useEffect(() => {
     if (isError) {
-      toast.error(message);
+      toast.error(message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
 
     if (isSuccess || user) {
+      toast.success("Great Success!", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       navigate("/");
     }
 
@@ -48,7 +53,9 @@ const Register = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
+      toast.error("Passwords do not match", {
+        position: toast.POSITION.TOP_CENTER,
+      });
     } else {
       const userData = {
         username,

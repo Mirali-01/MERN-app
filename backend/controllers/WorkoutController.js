@@ -38,16 +38,14 @@ const updateWorkout = asyncHandler(async (req, res) => {
     throw new Error("Workout not found");
   }
 
-  const user = await User.findById(req.user.id);
-
   // Checks user
-  if (!user) {
+  if (!req.user) {
     res.status(401);
     throw new Error("User Not Found");
   }
 
   // Checks if logged in user matches workout user
-  if (workout.user.toString() !== user.id) {
+  if (workout.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error("User Not Authorized");
   }
@@ -73,16 +71,14 @@ const deleteWorkout = asyncHandler(async (req, res) => {
     throw new Error("Workout not found");
   }
 
-  const user = await User.findById(req.user.id);
-
   // Checks user
-  if (!user) {
+  if (!req.user) {
     res.status(401);
     throw new Error("User Not Found");
   }
 
   // Checks if logged in user matches workout user
-  if (workout.user.toString() !== user.id) {
+  if (workout.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error("User Not Authorized");
   }
