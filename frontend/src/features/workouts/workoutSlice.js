@@ -60,7 +60,7 @@ export const deleteWorkout = createAsyncThunk(
   }
 );
 
-// createSlice => "name",
+// createSlice => "name", initialStates, reducers and extraReducers for promise cases
 export const workoutSlice = createSlice({
   name: "workout",
   initialState,
@@ -101,9 +101,9 @@ export const workoutSlice = createSlice({
       .addCase(deleteWorkout.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.workout = state.workout.filter(
-          (workout) => workout._id !== action.payload.id
-        );
+        state.workout = state.workout.filter((workout) => {
+          return workout._id !== action.payload._id;
+        });
       })
       .addCase(deleteWorkout.rejected, (state, action) => {
         state.isLoading = false;

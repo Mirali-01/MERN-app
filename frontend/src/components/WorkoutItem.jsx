@@ -11,7 +11,14 @@ const WorkoutItem = ({ workout }) => {
       <h2>{workout.workout}</h2>
       <button
         className="close"
-        onClick={() => dispatch(deleteWorkout(workout._id))}
+        onClick={() =>
+          dispatch(
+            deleteWorkout(
+              workout._id,
+              JSON.parse(localStorage.getItem("user")).token
+            )
+          )
+        }
       >
         X
       </button>

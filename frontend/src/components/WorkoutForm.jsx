@@ -4,15 +4,15 @@ import { useDispatch } from "react-redux";
 import { createWorkout } from "../features/workouts/workoutSlice";
 
 const WorkoutForm = () => {
-  const [text, setText] = useState("");
+  const [workout, setWorkout] = useState("");
 
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(createWorkout({ workout: text }));
-    setText("");
+    dispatch(createWorkout({ workout }));
+    setWorkout("");
   };
 
   return (
@@ -24,8 +24,8 @@ const WorkoutForm = () => {
             type="text"
             name="text"
             id="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
+            value={workout}
+            onChange={(e) => setWorkout(e.target.value)}
           />
         </div>
         <div className="form-group">
