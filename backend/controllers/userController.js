@@ -82,7 +82,6 @@ const getMe = asyncHandler(async (req, res) => {
 });
 
 // Generate JWT
-// The Pepper = JWT_SECRET_KEY
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET_KEY, {
     expiresIn: "30d",
