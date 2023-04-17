@@ -35,6 +35,7 @@ const workoutRouter = require("./routes/WorkoutRoutes");
 
 // middleware for routes
 app.use("/user", userRouter);
+// changed to workouts from workout
 app.use("/workout", workoutRouter);
 // app.use("/exercise", exerciseRouter);
 
