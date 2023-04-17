@@ -1,4 +1,4 @@
-// Initialize
+// Secrets
 require("dotenv").config();
 
 // app
@@ -21,7 +21,7 @@ app.use(mongoErrorHandler);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // connection between backend & frontend
-app.use(cors());
+app.use(cors()); //cross-origin-resource-sharing
 app.use(methodOverride("_method"));
 app.use((req, res, next) => {
   console.log(req.originalUrl);
@@ -35,8 +35,8 @@ const workoutRouter = require("./routes/WorkoutRoutes");
 
 // middleware for routes
 app.use("/user", userRouter);
-// app.use("/exercise", exerciseRouter);
 app.use("/workout", workoutRouter);
+// app.use("/exercise", exerciseRouter);
 
 app.use(defErrorHandler);
 

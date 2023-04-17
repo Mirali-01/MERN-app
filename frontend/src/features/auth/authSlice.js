@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // createSlice: accepts initial states, an object of reducer functions, and "slice" name
 
 // async for registration
-// createAsyncThunk: running asynchronous logic for fetchin API data, for every action there are state promises: pending, fulfilled, and rejected - taking control of promise actions
+// createAsyncThunk: running asynchronous logic for fetchin API data, for every action there are state promises: pending, fulfilled, and rejected - taking control of promise actions and delaying computation to do the work later
 import authService from "./authService";
 
 // Get user from localStorage
@@ -17,7 +17,7 @@ const initialState = {
   message: "",
 };
 
-// Register user, can vary in time, saves to localStorage
+// Register user, saves to localStorage
 // takes a string value that has the action
 export const register = createAsyncThunk(
   "auth/register",
@@ -76,7 +76,7 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.user = action.payload;
-        // action.payload takes the response from the backend
+        // action.payload takes the response from the backend = respose.data
       })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
