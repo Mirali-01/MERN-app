@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import workoutService from "./workoutService";
 
 const initialState = {
-  workouts: [],
+  workout: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -11,7 +11,7 @@ const initialState = {
 
 // Create new workout
 export const createWorkout = createAsyncThunk(
-  "workouts/create",
+  "workout/create",
   async (workoutData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
@@ -41,7 +41,7 @@ export const workoutSlice = createSlice({
       .addCase(createWorkout.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.workouts.push(action.payload);
+        state.workout.push(action.payload);
       })
       .addCase(createWorkout.rejected, (state, action) => {
         state.isLoading = false;

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "/workouts/";
+const API_URL = "/workout/";
 
 // Create new workout
 const createWorkout = async (workoutData, token) => {

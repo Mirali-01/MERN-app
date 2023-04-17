@@ -8,7 +8,7 @@ import workoutReducer from "../features/workouts/workoutSlice";
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    workouts: workoutReducer,
+    workout: workoutReducer,
     // exercise: exerciseReducer,
   },
 });

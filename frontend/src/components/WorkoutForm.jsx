@@ -11,7 +11,7 @@ const WorkoutForm = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(createWorkout({ text }));
+    dispatch(createWorkout({ workout: text }));
     setText("");
   };
 

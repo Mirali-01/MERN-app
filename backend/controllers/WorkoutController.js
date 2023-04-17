@@ -1,7 +1,6 @@
 // you can avoid using try-catch blocks, allows us to handle errors easily with a declared error handler
 const asyncHandler = require("express-async-handler");
 const Workout = require("../models/workout");
-const User = require("../models/user");
 
 // @route GET /workout
 // @access Private
