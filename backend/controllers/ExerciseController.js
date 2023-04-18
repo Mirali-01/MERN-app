@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Exercise = require("../models/exercise");
 
-// @route GET /exercise
+// @route GET /exercise/:workoutId/
 // @access Private
 const getExercises = asyncHandler(async (req, res) => {
   const exercises = await Exercise.find({ workout: req.params.workoutId });
@@ -9,7 +9,7 @@ const getExercises = asyncHandler(async (req, res) => {
   res.status(200).json(exercises);
 });
 
-// @route POST /exercise
+// @route POST /exercise/:workoutId/
 // @access Private
 const createExercise = asyncHandler(async (req, res) => {
   if (!req.body.exercise) {
@@ -26,7 +26,7 @@ const createExercise = asyncHandler(async (req, res) => {
   res.status(200).json(exercise);
 });
 
-// @route PUT /exercise/:id
+// @route PUT /exercise/:workoutId/:exerciseId
 // @access Private
 const updateExercise = asyncHandler(async (req, res) => {
   const exercise = await Exercise.findById(req.params.exerciseId);
@@ -60,7 +60,7 @@ const updateExercise = asyncHandler(async (req, res) => {
   res.status(200).json(updatedExercise);
 });
 
-// @route DELETE /exercise/:id
+// @route DELETE /exercise/:workoutId/:exerciseId
 // @access Private
 const deleteExercise = asyncHandler(async (req, res) => {
   const exercise = await Exercise.findById(req.params.exerciseId);
