@@ -9,10 +9,6 @@ const workoutSchema = mongoose.Schema(
     },
     // workout is comprised of an array of exercises
     workout: { type: String, required: [true, "Please add a workout"] },
-    exercise: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: "Exercise",
-    },
   },
   { timestamps: true }
 );

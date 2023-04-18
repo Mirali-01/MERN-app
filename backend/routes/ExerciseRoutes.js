@@ -1,10 +1,21 @@
-// const express = require("express");
-// const router = express.Router();
-// const controller = require("../controllers/ExerciseController");
+const express = require("express");
+const router = express.Router();
+const {
+  getExercises,
+  createExercise,
+  updateExercise,
+  deleteExercise,
+} = require("../controllers/ExerciseController");
+const { protect } = require("../middleware/authMiddleware");
 
-// router.get("/", controller.get);
-// router.post("/", controller.post);
-// router.put("/", controller.put);
-// router.delete("/", controller.delete);
+router
+  .route("/:workoutId")
+  .get(protect, getExercises)
+  .post(protect, createExercise);
 
-// module.exports = router;
+router
+  .route("/:workoutId/:exerciseId")
+  .put(protect, updateExercise)
+  .delete(protect, deleteExercise);
+
+module.exports = router;

@@ -26,14 +26,13 @@ app.use((req, res, next) => {
 
 // all routes
 const userRouter = require("./routes/UserRoutes");
-// const exerciseRouter = require("./routes/ExerciseRoutes");
+const exerciseRouter = require("./routes/ExerciseRoutes");
 const workoutRouter = require("./routes/WorkoutRoutes");
 
 // middleware for routes
 app.use("/user", userRouter);
-// changed to workouts from workout
 app.use("/workout", workoutRouter);
-// app.use("/exercise", exerciseRouter);
+app.use("/exercise", exerciseRouter);
 
 app.use(defErrorHandler);
 
