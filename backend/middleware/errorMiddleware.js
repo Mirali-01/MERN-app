@@ -13,22 +13,6 @@ const defErrorHandler = (err, req, res, next) => {
   });
 };
 
-const mongoErrorHandler = (err, req, res, next) => {
-  const statusCode = res.statusCode ? res.statusCode : 500;
-
-  res.status(statusCode);
-
-  res.json({
-    message: err.message,
-    // stack gives lines
-    stack: process.env.MONGO_URI === MONGO_URI ? null : err.stack,
-  });
-  console.log(err);
-  // success = 0 & terminate = 1
-  process.exit(1);
-};
-
 module.exports = {
   defErrorHandler,
-  mongoErrorHandler,
 };

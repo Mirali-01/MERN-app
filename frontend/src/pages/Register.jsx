@@ -33,9 +33,6 @@ const Register = () => {
     }
 
     if (isSuccess || user) {
-      toast.success("Great Success!", {
-        position: toast.POSITION.TOP_RIGHT,
-      });
       navigate("/");
     }
 

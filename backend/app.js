@@ -4,10 +4,7 @@ require("dotenv").config();
 // app
 const express = require("express");
 const app = express();
-const {
-  defErrorHandler,
-  mongoErrorHandler,
-} = require("./middleware/errorMiddleware");
+const { defErrorHandler } = require("./middleware/errorMiddleware");
 const port = process.env.PORT || 5000;
 // const path = require("path");
 const cors = require("cors");
@@ -15,7 +12,6 @@ const methodOverride = require("method-override");
 
 const mongoDB = require("./mongo/mongoDB");
 mongoDB();
-app.use(mongoErrorHandler);
 
 // middleware
 app.use(express.json());

@@ -23,13 +23,15 @@ const Dashboard = () => {
     if (!user) {
       navigate("/login");
     }
+  }, [user]);
 
+  useEffect(() => {
     dispatch(getWorkouts());
 
     return () => {
       dispatch(reset());
     };
-  }, [user, navigate, isError, message, dispatch]);
+  }, [reset, dispatch]);
 
   if (isLoading) {
     return <Spinner />;

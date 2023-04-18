@@ -18,7 +18,9 @@ const Nav = () => {
   return (
     <nav className="nav">
       <div className="logo">
-        <Link to="/">Workout Setter</Link>
+        <Link to="/">
+          <h3>Workout Setter</h3>
+        </Link>
       </div>
       <ul>
         {user ? (
