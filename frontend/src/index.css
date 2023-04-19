@@ -153,9 +153,10 @@ h3 {
 .btn {
   padding: 10px 20px;
   border: 1px solid black;
+  height: 8vh;
   border-radius: 5px;
   color: whitesmoke;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   cursor: pointer;
   text-align: center;

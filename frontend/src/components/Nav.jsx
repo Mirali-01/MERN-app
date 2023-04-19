@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { FaSignInAlt, FaSignOutAlt, FaUser, FaDumbbell } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
@@ -21,13 +21,13 @@ const Nav = () => {
       .then((response) => response.json())
       .then((json) => setMotivation(json.activity))
       .catch((error) => console.error(error));
-  }, []);
+  }, [navigate]);
 
   return (
     <nav className="nav">
       <div className="logo">
         <Link to="/">
-          <h3>Workout</h3>
+          <FaDumbbell size="13vh" />
         </Link>
       </div>
       <div className="API">

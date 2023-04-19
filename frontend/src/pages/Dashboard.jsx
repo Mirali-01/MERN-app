@@ -58,7 +58,7 @@ const Dashboard = () => {
             ))}
           </div>
         ) : (
-          <h3>You Have Not Set Any Goals</h3>
+          <h3>You Have Not Set Any Workouts</h3>
         )}
       </section>
     </div>
