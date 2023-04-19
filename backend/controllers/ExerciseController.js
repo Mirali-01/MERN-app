@@ -4,6 +4,7 @@ const Exercise = require("../models/exercise");
 // @route GET /exercise/:workoutId/
 // @access Private
 const getExercises = asyncHandler(async (req, res) => {
+  console.log("hello" + req.params.workoutId);
   const exercises = await Exercise.find({ workout: req.params.workoutId });
 
   res.status(200).json(exercises);
@@ -12,6 +13,7 @@ const getExercises = asyncHandler(async (req, res) => {
 // @route POST /exercise/:workoutId/
 // @access Private
 const createExercise = asyncHandler(async (req, res) => {
+  console.log("string" + req.params.workoutId);
   if (!req.body.exercise) {
     res.status(400);
     throw new Error("Please enter your exercise");
@@ -20,7 +22,7 @@ const createExercise = asyncHandler(async (req, res) => {
   const exercise = await Exercise.create({
     exercise: req.body.exercise,
     workout: req.params.workoutId,
-    user: req.user.id,
+    user: req.user._id,
   });
 
   res.status(200).json(exercise);

@@ -12,7 +12,7 @@ const exerciseSchema = mongoose.Schema(
       ref: "Workout",
       required: true,
     },
-    exercise: { type: String },
+    exercise: { type: String, required: [true, "Please add an exercise"] },
   },
   { timestamps: true }
 );

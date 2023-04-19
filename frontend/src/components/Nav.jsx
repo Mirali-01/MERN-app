@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,6 +8,7 @@ const Nav = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const [motivation, setMotivation] = useState(null);
 
   const onLogout = () => {
     dispatch(logout());
@@ -15,12 +16,30 @@ const Nav = () => {
     navigate("/");
   };
 
+  useEffect(() => {
+    fetch("https://www.boredapi.com/api/activity")
+      .then((response) => response.json())
+      .then((json) => setMotivation(json.activity))
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <nav className="nav">
       <div className="logo">
         <Link to="/">
-          <h3>Workout Setter</h3>
+          <h3>Workout</h3>
         </Link>
+      </div>
+      <div className="API">
+        {motivation ? (
+          <h5>
+            Activity:
+            <br />
+            {JSON.stringify(motivation, null)}
+          </h5>
+        ) : (
+          "Loading..."
+        )}
       </div>
       <ul>
         {user ? (

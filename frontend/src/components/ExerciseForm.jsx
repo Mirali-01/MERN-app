@@ -1,17 +1,20 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createExercise } from "../features/Exercises/ExerciseSlice";
+import { useParams } from "react-router-dom";
+import { createExercise } from "../features/exercises/exerciseSlice";
 
 const ExerciseForm = () => {
   const [exercise, setExercise] = useState("");
 
+  const { workoutId } = useParams();
+  console.log(useParams());
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(createExercise({ exercise }));
+    dispatch(createExercise({ exercise, workoutId }));
     setExercise("");
   };
 

@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors()); //cross-origin-resource-sharing
 app.use(methodOverride("_method"));
 app.use((req, res, next) => {
-  console.log(req.originalUrl);
+  console.log("OG" + req.originalUrl);
   next();
 });
 

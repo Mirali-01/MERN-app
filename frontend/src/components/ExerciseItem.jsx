@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { deleteExercise } from "../features/Exercises/ExerciseSlice";
+import { deleteExercise } from "../features/exercises/exerciseSlice";
 
 const ExerciseItem = ({ exercise }) => {
   const dispatch = useDispatch();

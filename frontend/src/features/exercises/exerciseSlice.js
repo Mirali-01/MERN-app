@@ -15,6 +15,7 @@ export const createExercise = createAsyncThunk(
   async (exerciseData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
+      console.log(exerciseData);
       return await exerciseService.createExercise(exerciseData, token);
     } catch (error) {
       const message =

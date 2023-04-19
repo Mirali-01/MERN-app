@@ -2,19 +2,20 @@ import React from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import WorkoutForm from "../components/WorkoutForm";
-import WorkoutItem from "../components/WorkoutItem";
+import ExerciseForm from "../components/ExerciseForm";
+import ExerciseItem from "../components/ExerciseItem";
 import Spinner from "../components/Spinner";
-import { getWorkouts, reset } from "../features/workouts/workoutSlice";
+import { getExercises, reset } from "../features/exercises/exerciseSlice";
 
-const Dashboard = () => {
+const ExercisePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.auth);
-  const { workout, isLoading, isError, message } = useSelector(
-    (state) => state.workout
-  );
+  const { exercise, isLoading, isError, message } = useSelector((state) => {
+    console.log(state.exercise);
+    return state.exercise;
+  });
 
   useEffect(() => {
     if (isError) {
@@ -26,7 +27,7 @@ const Dashboard = () => {
   }, [user]);
 
   useEffect(() => {
-    dispatch(getWorkouts());
+    dispatch(getExercises());
 
     return () => {
       dispatch(reset());
@@ -41,28 +42,24 @@ const Dashboard = () => {
     <div>
       <section className="heading">
         <h1>Welcome {user && user.username}</h1>
-        <p>Workouts Dashboard</p>
+        <p>Exercise Dashboard</p>
       </section>
 
-      <WorkoutForm />
+      <ExerciseForm />
 
       <section className="content">
-        {workout.length > 0 ? (
-          <div className="workouts">
-            {workout.map((workout) => (
-              <WorkoutItem
-                key={workout._id}
-                workout={workout}
-                workoutId={workout._id}
-              />
+        {exercise.length > 0 ? (
+          <div className="exercises">
+            {exercise.map((exercise) => (
+              <ExerciseItem key={exercise._id} exercise={exercise} />
             ))}
           </div>
         ) : (
-          <h3>You Have Not Set Any Goals</h3>
+          <h3>You Have Not Set Any Exercises</h3>
         )}
       </section>
     </div>
   );
 };
 
-export default Dashboard;
+export default ExercisePage;
