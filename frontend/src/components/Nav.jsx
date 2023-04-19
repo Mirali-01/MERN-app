@@ -33,7 +33,7 @@ const Nav = () => {
       <div className="API">
         {motivation ? (
           <h5>
-            Activity:
+            Activity
             <br />
             {JSON.stringify(motivation, null)}
           </h5>

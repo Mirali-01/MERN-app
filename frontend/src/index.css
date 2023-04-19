@@ -13,7 +13,7 @@ body {
 
 a {
   text-decoration: none;
-  color: black;
+  color: peru;
 }
 
 p {
@@ -32,7 +32,7 @@ h1,
 h2,
 h3 {
   font-weight: bolder;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .App {
@@ -55,7 +55,7 @@ h3 {
 .nav ul {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .nav ul li {
@@ -76,25 +76,26 @@ h3 {
 }
 
 .API{
-  border: thick solid;
+  border: solid;
   padding: 7px;
   border-radius: 1vh;
+  margin-left: 18px;
 }
 
 .API:hover{
   color: whitesmoke;
-  background-color: black;
+  background-color: peru;
 }
 
 .heading {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
   margin-bottom: 50px;
   padding: 0 20px;
 }
 
 .heading p {
-  color: gray;
+  color: peru;
 }
 
 .workouts {
@@ -107,6 +108,7 @@ h3 {
   background-color: whitesmoke;
   margin: 10px 0;
   padding: 20px 0 10px;
+  border-radius: 5vh;
   position: relative;
 }
 
@@ -141,6 +143,8 @@ h3 {
 }
 
 .form-group label {
+  font-size: 18px;
+  font-weight: 400;
   text-align: left;
   display: block;
   margin: 0 0 5px 3px;
@@ -148,10 +152,9 @@ h3 {
 
 .btn {
   padding: 10px 20px;
-  border: 1px solid #000;
+  border: 1px solid black;
   border-radius: 5px;
-  background: #000;
-  color: white;
+  color: whitesmoke;
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
@@ -160,6 +163,9 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
+    background-image: url("https://i.pinimg.com/736x/1b/d8/c2/1bd8c289f4b0fa3ed411c31c64769225.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .btn svg {
@@ -194,10 +200,10 @@ h3 {
 }
 
 .loadingSpinner {
-  width: 64px;
-  height: 64px;
-  border: 8px solid;
-  border-color: #000 transparent #555 transparent;
+  width: 80px;
+  height: 80px;
+  border: 9px solid;
+  border-color: black transparent darkred transparent;
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
 }

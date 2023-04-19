@@ -30,10 +30,10 @@ export const createExercise = createAsyncThunk(
 // Get all exercises
 export const getExercises = createAsyncThunk(
   "exercise/getExercises",
-  async (_, thunkAPI) => {
+  async (workoutId, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await exerciseService.getExercises(token);
+      return await exerciseService.getExercises(workoutId, token);
     } catch (error) {
       const message =
         (error.response && error.response.data && error.data.message) ||
@@ -47,10 +47,11 @@ export const getExercises = createAsyncThunk(
 // Delete exercise
 export const deleteExercise = createAsyncThunk(
   "exercise/delete",
-  async (id, thunkAPI) => {
+  async (exercise, thunkAPI) => {
     try {
+      let { _id, workout } = exercise;
       const token = thunkAPI.getState().auth.user.token;
-      return await exerciseService.deleteExercise(id, token);
+      return await exerciseService.deleteExercise(workout, _id, token);
     } catch (error) {
       const message =
         (error.response && error.response.data && error.data.message) ||

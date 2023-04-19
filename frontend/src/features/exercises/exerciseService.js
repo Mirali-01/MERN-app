@@ -19,36 +19,35 @@ const createExercise = async (exerciseData, token) => {
 };
 
 // Get all exercises
-const getExercises = async (workout, token) => {
+const getExercises = async (workoutId, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
-  const response = await axios.get(`${API_URL}/${workout.workoutId}`, config);
+  const response = await axios.get(`${API_URL}/${workoutId}`, config);
 
   return response.data;
 };
 
 // Delete exercise
-// const deleteExercise = async (exerciseId, token) => {
-//   const config = {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   };
-//   const response = await axios.delete(
-//     `${API_URL}/${exerciseData.workoutId}/${exerciseId}` + exerciseId,
-//     config
-//   );
-
-//   return response.data;
-// };
+const deleteExercise = async (workoutId, exerciseId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.delete(
+    `${API_URL}/${workoutId}/${exerciseId}`,
+    config
+  );
+  return response.data;
+};
 
 const exerciseService = {
   createExercise,
   getExercises,
-  // deleteExercise,
+  deleteExercise,
 };
 
 export default exerciseService;

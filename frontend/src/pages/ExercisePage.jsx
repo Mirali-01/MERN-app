@@ -6,14 +6,15 @@ import ExerciseForm from "../components/ExerciseForm";
 import ExerciseItem from "../components/ExerciseItem";
 import Spinner from "../components/Spinner";
 import { getExercises, reset } from "../features/exercises/exerciseSlice";
+import { useParams } from "react-router-dom";
 
 const ExercisePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { workoutId } = useParams();
 
   const { user } = useSelector((state) => state.auth);
   const { exercise, isLoading, isError, message } = useSelector((state) => {
-    console.log(state.exercise);
     return state.exercise;
   });
 
@@ -27,7 +28,7 @@ const ExercisePage = () => {
   }, [user]);
 
   useEffect(() => {
-    dispatch(getExercises());
+    dispatch(getExercises(workoutId));
 
     return () => {
       dispatch(reset());
@@ -51,7 +52,11 @@ const ExercisePage = () => {
         {exercise.length > 0 ? (
           <div className="exercises">
             {exercise.map((exercise) => (
-              <ExerciseItem key={exercise._id} exercise={exercise} />
+              <ExerciseItem
+                key={exercise._id}
+                exercise={exercise}
+                workoutId={exercise.workout}
+              />
             ))}
           </div>
         ) : (

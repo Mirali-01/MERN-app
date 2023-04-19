@@ -66,7 +66,7 @@ const updateExercise = asyncHandler(async (req, res) => {
 // @access Private
 const deleteExercise = asyncHandler(async (req, res) => {
   const exercise = await Exercise.findById(req.params.exerciseId);
-
+  console.log(exercise);
   if (!exercise) {
     res.status(400);
     throw new Error("exercise not found");
