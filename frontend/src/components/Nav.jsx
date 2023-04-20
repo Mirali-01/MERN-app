@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useState, useRef } from "react";
 import { FaSignInAlt, FaSignOutAlt, FaUser, FaDumbbell } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,7 +8,7 @@ const Nav = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const [motivation, setMotivation] = useState(null);
+  const [motivation, setMotivation] = useState("");
 
   const onLogout = () => {
     dispatch(logout());
@@ -16,12 +16,31 @@ const Nav = () => {
     navigate("/");
   };
 
+  // For navigation on click
+  // useEffect(() => {
+  //   fetch("https://www.boredapi.com/api/activity")
+  //     .then((response) => response.json())
+  //     .then((json) => setMotivation(json.activity))
+  //     .catch((error) => console.error(error));
+  // }, [navigate]);
+
   useEffect(() => {
-    fetch("https://www.boredapi.com/api/activity")
-      .then((response) => response.json())
-      .then((json) => setMotivation(json.activity))
-      .catch((error) => console.error(error));
-  }, [navigate]);
+    const fetchActivity = () => {
+      setInterval(() => {
+        fetch("https://www.boredapi.com/api/activity")
+          .then((response) => response.json())
+          .then((data) => {
+            // console.log(data.activity);
+            setMotivation(data.activity);
+          })
+          .catch((error) => console.error(error));
+      }, 5000);
+    };
+
+    fetchActivity();
+
+    return () => clearInterval(fetchActivity);
+  }, []);
 
   return (
     <nav className="nav">
@@ -31,15 +50,11 @@ const Nav = () => {
         </Link>
       </div>
       <div className="API">
-        {motivation ? (
-          <h5>
-            Activity
-            <br />
-            {JSON.stringify(motivation, null)}
-          </h5>
-        ) : (
-          "Loading..."
-        )}
+        <h5>
+          Activity
+          <br />
+          {motivation}
+        </h5>
       </div>
       <ul>
         {user ? (
