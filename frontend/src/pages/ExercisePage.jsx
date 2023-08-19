@@ -25,7 +25,7 @@ const ExercisePage = () => {
     if (!user) {
       navigate("/login");
     }
-  }, [user]);
+  }, [isError, message, navigate, user]);
 
   useEffect(() => {
     dispatch(getExercises(workoutId));
@@ -33,7 +33,7 @@ const ExercisePage = () => {
     return () => {
       dispatch(reset());
     };
-  }, [reset, dispatch]);
+  }, [dispatch, workoutId]);
 
   if (isLoading) {
     return <Spinner />;

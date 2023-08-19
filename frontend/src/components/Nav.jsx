@@ -1,4 +1,4 @@
-import { React, useEffect, useState, useRef } from "react";
+import { React, useEffect, useState } from "react";
 import { FaSignInAlt, FaSignOutAlt, FaUser, FaDumbbell } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,14 +15,6 @@ const Nav = () => {
     dispatch(reset());
     navigate("/");
   };
-
-  // For navigation on click
-  // useEffect(() => {
-  //   fetch("https://www.boredapi.com/api/activity")
-  //     .then((response) => response.json())
-  //     .then((json) => setMotivation(json.activity))
-  //     .catch((error) => console.error(error));
-  // }, [navigate]);
 
   useEffect(() => {
     const fetchActivity = () => {

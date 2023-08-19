@@ -76,10 +76,11 @@ h3 {
 }
 
 .API{
-  border: solid;
+  /* border: solid; */
   padding: 7px;
   border-radius: 1vh;
   margin-left: 18px;
+  font-size: 20px;
 }
 
 .API:hover{
