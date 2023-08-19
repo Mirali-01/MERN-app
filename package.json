@@ -1,7 +1,7 @@
 {
   "name": "fullstackapp-react-crud",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a full stack MERN application which allows users to log their workouts and exercises.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -14,11 +14,19 @@
     "bcryptjs": "^2.4.3",
     "concurrently": "^8.0.1",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.1",
     "method-override": "^3.0.0",
     "mongoose": "^6.10.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mirali-01/MERN-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Mirali-01/MERN-app/issues"
+  },
+  "homepage": "https://github.com/Mirali-01/MERN-app#readme"
 }
